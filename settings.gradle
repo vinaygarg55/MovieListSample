@@ -1,0 +1,29 @@
+include ':app'
+
+Properties properties = new Properties()
+def localProperties = file('local.properties')
+if (localProperties.exists()) {
+    properties.load(localProperties.newDataInputStream())
+    def androidComponentsDir = properties.getProperty('androidComponents.dir')
+    if (androidComponentsDir != null) {
+
+        def common = file("$androidComponentsDir\\common")
+        if (common.exists()) {
+            include ':common'
+            project(":common").projectDir = common
+        }
+
+        def ui = file("$androidComponentsDir\\ui")
+        if (ui.exists()) {
+            include ':ui'
+            project(":ui").projectDir = ui
+        }
+
+//project(":lifecycle").projectDir = file("..\\firebase-components\\lifecycle")
+        def network = file("$androidComponentsDir\\network")
+        if (network.exists()) {
+            include ':network'
+            project(":network").projectDir = network
+        }
+    }
+}

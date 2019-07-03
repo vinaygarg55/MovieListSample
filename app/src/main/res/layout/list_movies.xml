@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+
+        <variable
+                name="item"
+                type="com.vinay.movielistsample.data.db.movies.Movie"/>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+        <ImageView
+                android:id="@+id/iv_image"
+                android:layout_width="180dp"
+                android:layout_height="180dp"
+                app:imageSrc="@{item.posterPath}"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:contentDescription="@null"/>
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/title"
+                android:layout_marginStart="16dp"
+                app:layout_constraintStart_toEndOf="@id/iv_image"
+                android:text="@{item.title}"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
