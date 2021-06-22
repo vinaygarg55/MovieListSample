@@ -1,37 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<layout
-        xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto">
+
     <data>
 
         <variable
                 name="item"
-                type="com.vinay.movielistsample.data.db.movies.Movie"/>
+                type="com.vinay.movielistsample.data.db.movies.Movie" />
 
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/_FFFFFF"
+            android:layout_margin="10dp"
+            app:cardCornerRadius="5dp">
 
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-        <ImageView
-                android:id="@+id/iv_image"
-                android:layout_width="180dp"
-                android:layout_height="180dp"
-                app:imageSrc="@{item.posterPath}"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                android:contentDescription="@null"/>
+            <ImageView
+                    android:id="@+id/iv_image"
+                    android:layout_width="160dp"
+                    android:layout_height="180dp"
+                    android:scaleType="fitXY"
+                    app:imageSrc="@{item.posterPath}"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:contentDescription="@null" />
 
-        <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/title"
-                android:layout_marginStart="16dp"
-                app:layout_constraintStart_toEndOf="@id/iv_image"
-                android:text="@{item.title}"/>
+            <TextView
+                    android:id="@+id/tv_title"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    app:layout_constraintStart_toEndOf="@id/iv_image"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:text="@{item.title}"
+                    android:ellipsize="end"
+                    android:textColor="@color/_4682B4"
+                    android:textSize="20sp"
+                    android:maxLines="1"
+                    />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <TextView
+                    android:id="@+id/tv_vote_avg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    app:layout_constraintStart_toEndOf="@id/iv_image"
+                    app:layout_constraintTop_toBottomOf="@id/tv_title"
+                    android:drawableStart="@drawable/ic_star"
+                    android:drawablePadding="5dp"
+                    android:text="@{String.valueOf(item.voteAverage)}"
+                    android:textColor="@color/_FFFFFF"
+                    android:textSize="14sp"
+                    android:paddingVertical="2dp"
+                    android:paddingHorizontal="5dp"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/rounded_corner_view"/>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
 </layout>
